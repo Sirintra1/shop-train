@@ -1,0 +1,94 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">User <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/phone"  tabindex="-1" aria-disabled="true">Shop</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+
+
+<!-- Form -->
+
+<div class="container mt-5">
+    <div class="text-center mb-3">
+        <h4>Register</h4>
+    </div>
+    <div class="card p-4">
+        <form [formGroup]="registerForm">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" autocomplete="off" id="name" placeholder="Name"
+                        formControlName="name">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="surname">Surname</label>
+                    <input type="text" class="form-control" autocomplete="off" id="surname" placeholder="Surname"
+                        formControlName="surname">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="gender">Gender</label>
+                    <select id="gender" class="form-control" formControlName="gender">
+                        <option value="">Choose...</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="tel">Telephone</label>
+                    <input type="text" class="form-control" autocomplete="off" id="tel" placeholder="Telephone"
+                        formControlName="tel">
+                </div>
+            </div>
+            <div class="text-center mt-3">
+                <button type="submit" class="btn btn-secondary mr-2" (click)="clearData()">Cancel</button>
+                <button *ngIf="!isEdit" type="submit" class="btn btn-primary mr-2" (click)="submit()">Submit</button>
+                <button *ngIf="isEdit" type="submit" class="btn btn-primary" (click)="edit()">Edit</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="row mt-5" *ngIf="users?.length > 0">
+        <div class="text-center col-12 mb-3">
+            <h4><i class="fa fa-user mr-2" aria-hidden="true"></i> Users</h4>
+        </div>
+        <div class="col-12">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">No.</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Surname</th>
+                        <th scope="col">Gender</th>
+                        <th scope="col">Telephone</th>
+                        <th class="text-center" scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of users; let i = index">
+                        <th>{{i+1}}</th>
+                        <td class="cursor-pointer" (click)="userDetail(user)">{{user.name}}</td>
+                        <td class="cursor-pointer" (click)="userDetailByItem(user)">{{user.surname}}</td>
+                        <td>{{user.gender}}</td>
+                        <td>{{user.tel}}</td>
+                        <td class="text-center">
+                            <i class="fa fa-pencil mr-2 cursor-pointer" (click)="bindData(user)"></i>
+                            <i class="fa fa-trash text-danger cursor-pointer" (click)="delete(user._id)"></i>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

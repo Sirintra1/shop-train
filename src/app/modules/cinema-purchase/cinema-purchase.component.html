@@ -1,0 +1,124 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">
+        <img src="https://image.flaticon.com/icons/png/512/96/96446.png" width="50" height="50" alt="logo">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarScroll">
+        <ul class="navbar-nav mr-auto my-2 my-lg-0 navbar-nav-scroll" style="max-height: 100px;">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/phone">Phone</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/cinema" tabindex="-1" aria-disabled="true">Cinema</a>
+            </li>
+        </ul>
+        <form class="d-flex">
+            <input class="form-control form-control-sm mr-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-sm btn-outline-dark" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+
+<div *ngIf="!isPurchase" class="container-fluid mt-3">
+    <div class="text-center">
+        <h4>Seats</h4>
+    </div>
+    <div class="row p-1-8">
+        <div id="seat" class="col-1" *ngFor="let item of listSeats.seats" (click)="selectSeat(item)">
+            <div class="card mb-3 text-center" [ngClass]="item.isSelect ? 'select-seat' : ''">
+                <div class="card-body">
+                    <p class="card-text text-muted mb-0 f-15">{{item.name}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="text-center">
+        <button class="btn btn-secondary mr-2" (click)="cancel()">Cancel</button>
+        <button class="btn btn-success" (click)="purchase()" [disabled]="validatePurchase()">Purchase</button>
+    </div>
+</div>
+
+<div *ngIf="isPurchase && !isTicket" class="container pt-5">
+    <div class="col-12 text-center">
+        <h4>Slip</h4>
+    </div>
+    <div class="col-12 p-1-25">
+        <div class="card">
+            <div class="card-body text-center">
+                <img src="https://image.flaticon.com/icons/png/512/96/96446.png" width="50" height="50" alt="logo">
+                <h5 class="card-title">Phapare Cinema</h5>
+                <h6 class="card-subtitle mb-2 text-muted">PV Apartment Intramara 12 Samsen Nai Phayathai Bangkok 10400,
+                    Tel : 12345678
+                </h6>
+            </div>
+            <hr>
+            <div class="card-body">
+                <div class="row mt-1">
+                    <p class="card-text text-muted col-5">Movie</p>
+                    <p class="card-text text-muted text-right col-3">Qty</p>
+                    <p class="card-text text-muted text-right col-4">Amount</p>
+                </div>
+                <div class="row">
+                    <p class="card-text col-6">{{listSeats.movie}}</p>
+                    <p class="card-text text-center col-2">{{listPurchase.length}}</p>
+                    <p class="card-text text-right col-4">{{total}}</p>
+                </div>
+                <hr>
+                <div class="row">
+                    <p class="card-text text-center f-13 text-muted mt-2">Some quick example text to build on the card
+                        title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-12 text-center">
+        <button class="btn btn-primary" (click)="getTicket()">Ticket</button>
+    </div>
+</div>
+
+<div *ngIf="isTicket" class="container pt-5">
+    <div class="col-12 text-center">
+        <h4>Ticket</h4>
+    </div>
+    <div class="col-12 p-1-20">
+        <div class="card" *ngFor="let ticket of listPurchase">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <img width="125" src="{{listSeats.image}}" alt="movie">
+                </div>
+                <div class="col-md-6">
+                    <div class="card-body">
+                        <h5 class="card-title">{{listSeats.movie}}</h5>
+                        <p class="card-text mb-0">Friday, June, 12th</p>
+                        <p class="card-text mb-0"><small class="text-muted">Theater 7, <span class="ml-1">Price
+                                    {{ticket.price}}</span></small></p>
+                        <hr>
+                        <p class="card-text mb-0">Row {{ticket.row}} <span class="ml-5">Seat {{ticket.number}}</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-2 border-dashboard">
+                    <div class="text-center mt-4">
+                        <img src="https://image.flaticon.com/icons/png/512/96/96446.png" width="40" height="40"
+                            alt="logo">
+                    </div>
+                    <div class="f-8 ml-2">
+                        <p class="card-text mb-3">Phapare Cinema</p>
+                        <p class="card-text mb-0">C34S567W8</p>
+                        <p class="card-text mb-0">Price : {{ticket.price}}</p>
+                        <p class="card-text mb-0">{{dateToday | date : 'dd/MM/yyyy hh:mm'}}</p>
+                        <p class="card-text mb-0">Emp. 9800</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

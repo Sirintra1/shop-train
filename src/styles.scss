@@ -1,1 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: 'HappyMonkey';
+    src: url('/assets/fonts/HappyMonkey-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Gruppo';
+    src: url('/assets/fonts/Gruppo-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+html,
+body {
+
+    font-family: HappyMonkey;
+}

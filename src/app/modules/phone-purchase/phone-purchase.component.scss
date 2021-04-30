@@ -1,0 +1,56 @@
+:host {
+    .bg-light {
+        border-bottom: 1px solid #ddd !important;
+        padding: 0 30px !important;
+        box-shadow: 5px 1px #d3d3d3 !important;
+    }
+    .card {
+        :hover {
+            cursor: pointer;
+        }
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+    #qty > input {
+        text-align: center;
+    }
+
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Firefox */
+    input[type="number"] {
+        -moz-appearance: textfield;
+    }
+    .btn-confirm {
+        position: fixed;
+        bottom: 3px;
+        right: 3px;
+    }
+    .btn-cancel {
+        position: fixed;
+        bottom: 3px;
+        right: 100px;
+    }
+    .nav-fixed {
+        position: fixed;
+        z-index: 99;
+        width: 100%;
+    }
+    .pt-6 {
+        padding-top: 6rem;
+    }
+    .p-1-25 {
+        padding: 1rem 25rem !important;
+    }
+
+    .f-13 {
+        font-size: 13px;
+    }
+    button:disabled {
+        cursor: not-allowed !important;
+    }
+}
